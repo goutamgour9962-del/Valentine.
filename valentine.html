@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Nandini ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Quicksand:wght@500&display=swap');
+
+        :root {
+            --primary-color: #ff4d6d;
+            --secondary-color: #ff8fa3;
+            --bg-color: #fff0f3;
+        }
+
+        body {
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        /* Floating background hearts */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.2);
+            font-size: 20px;
+            z-index: 1;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        #main-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.3);
+            width: 85%;
+            max-width: 450px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 1px solid white;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .nandini-name {
+            background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .question {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #c9184a;
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 100px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        #yesBtn {
+            background: linear-gradient(45deg, #ff4d6d, #ff758c);
+            color: white;
+            z-index: 2;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        #noBtn {
+            background: #adb5bd;
+            color: white;
+            position: absolute;
+            z-index: 100;
+        }
+
+        #success-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .couple-photo {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin: 20px 0;
+        }
+
+        .gif {
+            width: 150px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-card">
+        <div id="ask-screen">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW16NjBqbmxidm16bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZAm/c76IJLufpNwSULPk2m/giphy.gif" alt="Love GIF" class="gif">
+            <h1>Hi <span class="nandini-name">Nandini!</span> ❤️</h1>
+            <p class="question">Will you be my Valentine forever?</p>
+            <div class="btn-container">
+                <button class="btn" id="yesBtn" onclick="celebrate()">YES! 😍</button>
+                <button class="btn" id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No 🥺</button>
+            </div>
+        </div>
+
+        <div id="success-screen">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZAm/L4lvBzeIlMMmKnLpxl/giphy.gif" class="gif">
+            <h1>I Love You, Nandini! ❤️</h1>
+            <img src="https://images2.imgbox.com/00/03/E8WbX7Bf_o.jpg" alt="Our Picture" class="couple-photo">
+            <p style="color: #ff4d6d; font-size: 1.2rem; font-style: italic;">"You're the best thing that ever happened to me."</p>
+        </div>
+    </div>
+
+    <script>
+        // Create background floating hearts
+        function createBgHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('bg-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        setInterval(createBgHeart, 500);
+
+        // Professional Button Escape Logic
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const padding = 50;
+            
+            // Calculate random positions within the visible window
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+            
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function celebrate() {
+            document.getElementById('ask-screen').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'flex';
+            
+            // Heavy confetti/heart effect on success
+            for(let i=0; i<100; i++) {
+                setTimeout(createExplosionHeart, i * 20);
+            }
+        }
+
+        function createExplosionHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.style.position = 'fixed';
+            heart.style.left = '50%';
+            heart.style.top = '50%';
+            heart.style.fontSize = '20px';
+            heart.style.zIndex = '1000';
+            document.body.appendChild(heart);
+
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 10 + 5;
+            const destinationX = Math.cos(angle) * 300;
+            const destinationY = Math.sin(angle) * 300;
+
+            heart.animate([
+                { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                { transform: `translate(${destinationX}px, ${destinationY}px) scale(0)`, opacity: 0 }
+            ], {
+                duration: 1500,
+                easing: 'ease-out'
+            });
+
+            setTimeout(() => heart.remove(), 1500);
+        }
+    </script>
+</body>
+</html>
